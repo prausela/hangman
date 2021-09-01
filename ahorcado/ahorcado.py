@@ -133,7 +133,7 @@ while len(posiciones) > 0 and intentos_restantes > 0:
 
   letras_usadas.agregar_letra(letra)
 
-finish_time = int(max(time.time() - start_time, 0))
+finish_time = int(max(30 - (time.time() - start_time), 0))
 
 pantalla.limpiar_pantalla()
 if len(posiciones) <= 0:
