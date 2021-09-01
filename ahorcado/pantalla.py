@@ -20,12 +20,12 @@ def mostrar_intento(palabra_oculta, intentos_restantes, letras_usadas):
     print(letras_usadas)
     print()
 
-def mensaje_de_victoria(palabra_elegida, intentos_restantes, letras_usadas):
+def mensaje_de_victoria(palabra_elegida, intentos_restantes, letras_usadas, puntos):
     print()
     print("ADIVINASTE LA PALABRA!!")
     mostrar_intento(palabra_elegida, intentos_restantes, letras_usadas)
     print("TU PUNTAJE:")
-    print(puntaje.puntaje_palabra(str(palabra_elegida).replace(" ", "")))
+    print(puntos)
     print()
 
 def mensaje_de_derrota(palabra_elegida, intentos_restantes, letras_usadas):

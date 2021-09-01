@@ -1,6 +1,7 @@
 import random
 import pantalla
 import time
+import puntaje
 from sortedcontainers import SortedSet
 
 palabras = [
@@ -125,7 +126,8 @@ while len(posiciones) > 0 and intentos_restantes > 0:
 
 pantalla.limpiar_pantalla()
 if len(posiciones) <= 0:
-  pantalla.mensaje_de_victoria(palabra_elegida, intentos_restantes, letras_usadas)
+  puntos = puntaje.puntaje_palabra(str(palabra_elegida).replace(" ", ""))
+  pantalla.mensaje_de_victoria(palabra_elegida, intentos_restantes, letras_usadas, puntos)
 else:
   pantalla.mensaje_de_derrota(palabra_elegida, intentos_restantes, letras_usadas)
 
