@@ -1,1 +1,1 @@
-python .\ahorcado\ahorcado.py
+python ./ahorcado/ahorcado.py
