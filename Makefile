@@ -1,5 +1,5 @@
 init:
 	pip install -r .requirements.txt
-	chmod +x ahorcado/ahorcado.py
+	chmod +x correr.sh
 
 .PHONY: init
