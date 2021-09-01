@@ -1,6 +1,7 @@
 import random
+import time
 import pantalla
-import log
+import loggeador
 import puntaje
 from sortedcontainers import SortedSet
 
@@ -105,9 +106,11 @@ posiciones          = obtener_posiciones_de_las_letras(palabra_elegida)
 intentos_restantes  = 5
 letras_usadas       = LetrasUsadas()
 
-log.log(palabra_elegida)
+loggeador.loggear(palabra_elegida)
 
 guionar_palabra_elegida(palabra_oculta)
+
+start_time = time.time()
 
 while len(posiciones) > 0 and intentos_restantes > 0:
   pantalla.limpiar_pantalla()
@@ -122,12 +125,16 @@ while len(posiciones) > 0 and intentos_restantes > 0:
 
   letras_usadas.agregar_letra(letra)
 
+finish_time = int(max(time.time() - start_time, 0))
+
 pantalla.limpiar_pantalla()
 if len(posiciones) <= 0:
-  puntos = puntaje.puntaje_palabra(str(palabra_elegida).replace(" ", ""))
+  puntos = puntaje.puntaje_palabra(str(palabra_elegida).replace(" ", ""), intentos_restantes, finish_time)
   pantalla.mensaje_de_victoria(palabra_elegida, intentos_restantes, letras_usadas, puntos)
-  log.log(puntos)
+  loggeador.loggear_puntaje(intentos_restantes, finish_time, puntos)
 else:
   pantalla.mensaje_de_derrota(palabra_elegida, intentos_restantes, letras_usadas)
-
+  loggeador.loggear_puntaje(0, 0, 0)
+loggeador.loggear("")
+loggeador.loggear("")
 input()
