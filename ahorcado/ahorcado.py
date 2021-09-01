@@ -1,6 +1,6 @@
 import random
 import pantalla
-import puntaje
+import time
 from sortedcontainers import SortedSet
 
 palabras = [
@@ -105,7 +105,7 @@ intentos_restantes  = 5
 letras_usadas       = LetrasUsadas()
 
 f = open("palabra_elegida.txt", "a")
-f.write(str(palabra_elegida) + "\n")
+f.write("[" + str(time.ctime()) + "]\t" + str(palabra_elegida) + "\n")
 f.close()
 
 guionar_palabra_elegida(palabra_oculta)
