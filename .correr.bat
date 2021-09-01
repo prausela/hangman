@@ -1,0 +1,1 @@
+python .\ahorcado\ahorcado.py
