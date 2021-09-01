@@ -1,6 +1,6 @@
 import random
 import pantalla
-import time
+import log
 import puntaje
 from sortedcontainers import SortedSet
 
@@ -105,9 +105,7 @@ posiciones          = obtener_posiciones_de_las_letras(palabra_elegida)
 intentos_restantes  = 5
 letras_usadas       = LetrasUsadas()
 
-f = open("palabra_elegida.txt", "a")
-f.write("[" + str(time.ctime()) + "]\t" + str(palabra_elegida) + "\n")
-f.close()
+log.log(palabra_elegida)
 
 guionar_palabra_elegida(palabra_oculta)
 
@@ -128,6 +126,7 @@ pantalla.limpiar_pantalla()
 if len(posiciones) <= 0:
   puntos = puntaje.puntaje_palabra(str(palabra_elegida).replace(" ", ""))
   pantalla.mensaje_de_victoria(palabra_elegida, intentos_restantes, letras_usadas, puntos)
+  log.log(puntos)
 else:
   pantalla.mensaje_de_derrota(palabra_elegida, intentos_restantes, letras_usadas)
 
