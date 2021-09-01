@@ -1,2 +1,2 @@
 touch palabra_elegida.txt
-tail -f palabra_elegida.txt | less
+tail -f -n 8 palabra_elegida.txt | less

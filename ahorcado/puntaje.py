@@ -36,12 +36,13 @@ puntaje_letras = dict()
 for i, e in enumerate(frecuencia_letras):
   puntaje_letras[e] = max_frec - frecuencia_letras[e]
 
-def puntaje_palabra(palabra, intentos_restantes, tiempo_restante):
+def puntaje_palabra(palabra, intentos_restantes, tiempo_restante, pista):
   global puntaje_letras
   puntaje = 0
   for i in range(0, len(palabra)):
     puntaje += puntaje_letras[palabra[i]]
-  puntaje *= 2
+  if not pista:
+    puntaje *= 2
   puntaje += 10*intentos_restantes
   puntaje += tiempo_restante
   return puntaje

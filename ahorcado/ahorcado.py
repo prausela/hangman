@@ -105,6 +105,7 @@ palabra_oculta      = PalabraOculta(palabra_azar)
 posiciones          = obtener_posiciones_de_las_letras(palabra_elegida)
 intentos_restantes  = 5
 letras_usadas       = LetrasUsadas()
+pista               = False
 
 loggeador.loggear(palabra_elegida)
 
@@ -114,9 +115,16 @@ start_time = time.time()
 
 while len(posiciones) > 0 and intentos_restantes > 0:
   pantalla.limpiar_pantalla()
-  pantalla.mostrar_intento(palabra_oculta, intentos_restantes, letras_usadas)
+  pantalla.mostrar_intento(palabra_oculta, intentos_restantes, letras_usadas, pista)
 
   letra   = pantalla.pedir_letra()
+  while(letra == "-"):
+    pista = True
+    loggeador.loggear("usó pista")
+    pantalla.limpiar_pantalla()
+    pantalla.mostrar_intento(palabra_oculta, intentos_restantes, letras_usadas, pista)
+    letra = pantalla.pedir_letra()
+
   acierto = intentar_con_letra(palabra_oculta, posiciones, letra)
   if acierto:
     posiciones.pop(letra)
@@ -129,11 +137,11 @@ finish_time = int(max(time.time() - start_time, 0))
 
 pantalla.limpiar_pantalla()
 if len(posiciones) <= 0:
-  puntos = puntaje.puntaje_palabra(str(palabra_elegida).replace(" ", ""), intentos_restantes, finish_time)
-  pantalla.mensaje_de_victoria(palabra_elegida, intentos_restantes, letras_usadas, puntos)
+  puntos = puntaje.puntaje_palabra(str(palabra_elegida).replace(" ", ""), intentos_restantes, finish_time, pista)
+  pantalla.mensaje_de_victoria(palabra_elegida, intentos_restantes, letras_usadas, puntos, pista)
   loggeador.loggear_puntaje(intentos_restantes, finish_time, puntos)
 else:
-  pantalla.mensaje_de_derrota(palabra_elegida, intentos_restantes, letras_usadas)
+  pantalla.mensaje_de_derrota(palabra_elegida, intentos_restantes, letras_usadas, pista)
   loggeador.loggear_puntaje(0, 0, 0)
 loggeador.loggear("")
 loggeador.loggear("")
